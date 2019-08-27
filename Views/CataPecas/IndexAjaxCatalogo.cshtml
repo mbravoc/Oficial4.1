@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Oficial4.Models.Pecas>
+@{
+    ViewBag.Title = "IndexAjaxCatalogo";
+}
+
+<h2>IndexAjaxCatalogo</h2>
+
+
+@foreach (var item in Model)
+{
+    <ul>
+        <li>@item.nome_Pecas</li>
+        <li><a href="#" data-toggle="popover" data-trigger="hover" data-id="@item.id_Pecas" id="@item.nome_Pecas">@item.preco_Pecas</a></li>
+    </ul>
+    @*<tr>
+            <td>@item.nome_Pecas</td>
+            <td><a href="#" data-toggle="popover" data-trigger="hover" data-id="@item.id_Pecas" id="@item.nome_Pecas">@item.preco_Pecas</a></td>
+        </tr>*@
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('a[data-toggle]').hover(function () {
+            $('[data-toggle="popover"]').popover('destroy');
+            $('[data-toggle="popover"]').popover({
+                title: setData($(this).attr('data-id')),
+                html: true,
+                placement: 'right'
+            });
+        })
+        function setData(id) {
+            var set_data = '';
+            $.ajax({
+                url: "https://localhost:44382/Catalogo/CatalogoPecas?id=" + id,
+                method: "Get",
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    set_data = data;
+                }
+            });
+            return set_data;
+        }
+    });
+</script>

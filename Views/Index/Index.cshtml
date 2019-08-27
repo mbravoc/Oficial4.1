@@ -1,0 +1,45 @@
+﻿@model Oficial4.Models.Pecas
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/index.css" rel="stylesheet" />
+<style>
+    
+  
+
+</style>
+<div>
+    <h2>Selecione seu Carro</h2>
+
+    <div class="div-select">
+        <select id="selectcarros" name=" ">
+            @foreach (var item in ViewBag.Carros)
+            {
+
+                <option class="form-group" value="@item.nome_Carro">@item.nome_Carro</option>
+
+            }
+        </select>
+    </div>
+
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.intellisense.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.slim.js"></script>
+<script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#selectcarros").change(function ()
+        {
+            @*var url = "@Url.Action("CatalogoCategoria","CatalogoCategoria")";*@
+            window.open("https://localhost:44382/CataCategoria/CatalogoCategoria/1002");
+            $.get
+            location.href = url;
+        });
+    });
+</script>
