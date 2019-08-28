@@ -18,7 +18,7 @@ namespace Oficial4.Controllers
 
             carros = db.Carro.ToList();
             ViewBag.Carros = carros;
-            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao");
+            ViewBag.Carros = new SelectList(db.Carro, "id_Carro", "nome_Carro");
             return View();
         }
     }

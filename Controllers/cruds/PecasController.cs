@@ -41,6 +41,8 @@ namespace Oficial4.Controllers.cruds
         {
             ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao");
             return View();
+            //var carros = db.Carro.FirstOrDefault(x => x.nome_Carro == nome_Carro);
+            //return Json(carros, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Pecas/Create
@@ -52,21 +54,16 @@ namespace Oficial4.Controllers.cruds
         {
             if (ModelState.IsValid)
             {
-                List<Carro> carros = new List<Carro>();
-
-                carros = db.Carro.ToList();
-                
-                ViewBag.Carros = new SelectList(db.Carro, "id_Carro", "nome_Carro");
-                
                 db.Pecas.Add(pecas);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            } else { 
-
+            }
             ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
-                return View(pecas);
+            return View(pecas);
         }
-        }
+        
+        //public JsonResult getCarro(string )
+
 
         // GET: Pecas/Edit/5
         public ActionResult Edit(int? id)
