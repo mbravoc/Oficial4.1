@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Oficial4.Models.Pecas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista Peças";
 }
 
-<h2>Index</h2>
+<h2>Lista de Peças</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Incluir Novo Produto", "Create", new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>

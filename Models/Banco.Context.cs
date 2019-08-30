@@ -27,10 +27,9 @@ namespace Oficial4.Models
     
         public virtual DbSet<Carro> Carro { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<Pecas> Pecas { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tipo> Tipo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-       
+        public virtual DbSet<Pecas> Pecas { get; set; }
     }
 }

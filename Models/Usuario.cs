@@ -20,7 +20,7 @@ namespace Oficial4.Models
         {
             this.Cliente = new HashSet<Cliente>();
         }
-    
+
         public int id_Usuario { get; set; }
         [Display(Name = "Usuario ")]
         [Required(ErrorMessage = "digite o nome do usuario")]

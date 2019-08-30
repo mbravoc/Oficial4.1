@@ -12,43 +12,41 @@ namespace Oficial4.Controllers
         // GET: Categoria
         catalogoOficialEntities db = new catalogoOficialEntities();
 
-        public ActionResult CatalogoCategoria(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                // cadastrar o TODOS no banco
-                // esse TODOS vai ter um id
-
-                // if (id == todos(1001)
-                if (id == 1001)
-                //List<Tipo> TipoInfo = db.Tipo.ToList();
-                {
-                    List<Tipo> TipoInfo = db.Tipo.ToList();
-                }
-                else
-                {
-                    // else
-                    List<Tipo> TipoInfo = db.Tipo.Where(x => x.id_Tipo == id).ToList();
-                    
-                    return View(/*db.Tipo.ToList()*/TipoInfo);
-                    
-                    
-                    return View();
-                }
-            }// fim if
-            return RedirectToAction("CatalogoCategoria", "CatalogoCategoria"/*, new { id = 1002 })*/);
-
-        }
-        //public ActionResult CatalogoCategoria()
+        //public ActionResult CatalogoCategoria(int id)
         //{
-        //    catalogoOficialEntities db = new catalogoOficialEntities();
+        //    if (ModelState.IsValid)
+        //    {
+        //        cadastrar o TODOS no banco
+        //        esse TODOS vai ter um id
 
-        //    List<Carro> carros = new List<Carro>();
+        //         if (id == todos(1001)
+        //        if (id == 1001)
+        //                List<Tipo> TipoInfo = db.Tipo.ToList();
+        //        {
+        //            List<Tipo> TipoInfo = db.Tipo.ToList();
+        //        }
+        //        else
+        //        {
+        //             else
+        //                List<Tipo> TipoInfo = db.Tipo.Where(x => x.id_Tipo == id).ToList();
 
-        //    carros = db.Carro.ToList();
-        //    ViewBag.Carros = carros;
-        //    ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao");
-        //    return View();
+        //            return View(/*db.Tipo.ToList()*/TipoInfo);
+
+
+        //        }
+        //    }// fim if
+        //    return RedirectToAction("CatalogoCategoria", "CataCategoria", new { id = 1002 });
+
         //}
+        public ActionResult CatalogoCategoria()
+        {
+            catalogoOficialEntities db = new catalogoOficialEntities();
+
+            List<RetornoCategoria> tipos = new List<RetornoCategoria>();
+
+            ViewBag.Tipos = tipos;
+            ViewBag.Tipos = new SelectList(db.Tipo, "id_Tipo", "descricao");
+            return View();
+        }
     }
 }

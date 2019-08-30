@@ -1,4 +1,4 @@
-﻿@model Oficial4.Models.Tipo
+﻿@model Oficial4.Models.RetornoCategoria
 @{
     ViewBag.Title = "CATÁLOGO - Cliente";
 }
@@ -12,23 +12,35 @@
         }
     </select>*@
 <div>
-    <h2>Selecione sua Categoria</h2>
+    <h2>Selecione Categoria da peça Desejada:</h2>
 
-    <select id="selectTipos" name=" ">
-        @foreach (var item in ViewBag.Tipo)
-        {
-            <option value="@item.descricao">@item.descricao</option>
-        }
-    </select>
+    <div class="div-select">
+        <select id="selecttipos" name=" ">
+            @foreach (var item in ViewBag.Tipos)
+            {
+
+                <option class="form-group" value="@item.id_Tipo">@item.id_Tipo</option>
+
+            }
+        </select>
+    </div>
+
+
 </div>
+
+<script src="~/Scripts/jquery-3.3.1.intellisense.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.slim.js"></script>
+<script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function ()
     {
-        $("#selectTipos").change(function ()
+        $("#selecttipos").change(function ()
         {
             @*var url = "@Url.Action("CatalogoCategoria","CatalogoCategoria")";*@
-            window.open("https://localhost:44382/IndexAjaxCatalogo/CataPecas");
+            window.open("https://localhost:44312/IndexAjaxCatalogo/CataPecas");
             $.get
             location.href = url;
         });

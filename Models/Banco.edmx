@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="catalogoOficialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="catalogoOficialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Carro">
           <Key>
             <PropertyRef Name="id_carro" />
@@ -34,7 +34,7 @@
           <Property Name="nome_Pecas" Type="varchar" MaxLength="50" />
           <Property Name="preco_Pecas" Type="float" />
           <Property Name="tipo" Type="int" Nullable="false" />
-          <Property Name="nome_carro" Type="varchar" MaxLength="200" />
+          <Property Name="carro" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -73,6 +73,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pecas_Carro">
+          <End Role="Carro" Type="Self.Carro" Multiplicity="0..1" />
+          <End Role="Pecas" Type="Self.Pecas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carro">
+              <PropertyRef Name="id_carro" />
+            </Principal>
+            <Dependent Role="Pecas">
+              <PropertyRef Name="carro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pecas_Tipo">
           <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
           <End Role="Pecas" Type="Self.Pecas" Multiplicity="*" />
@@ -96,13 +108,16 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
+          <AssociationSet Name="FK_Pecas_Carro" Association="Self.FK_Pecas_Carro">
+            <End Role="Carro" EntitySet="Carro" />
+            <End Role="Pecas" EntitySet="Pecas" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pecas_Tipo" Association="Self.FK_Pecas_Tipo">
             <End Role="Tipo" EntitySet="Tipo" />
             <End Role="Pecas" EntitySet="Pecas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="catalogoOficialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -112,6 +127,7 @@
           </Key>
           <Property Name="id_carro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nome_Carro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pecas" Relationship="catalogoOficialModel.FK_Pecas_Carro" FromRole="Carro" ToRole="Pecas" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -127,17 +143,6 @@
           <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="usuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuario1" Relationship="Self.FK_Cliente_Usuario" FromRole="Cliente" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="Pecas">
-          <Key>
-            <PropertyRef Name="id_Pecas" />
-          </Key>
-          <Property Name="id_Pecas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nome_Pecas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="preco_Pecas" Type="Double" />
-          <Property Name="tipo" Type="Int32" Nullable="false" />
-          <Property Name="nome_carro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Tipo1" Relationship="Self.FK_Pecas_Tipo" FromRole="Pecas" ToRole="Tipo" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -155,7 +160,7 @@
           </Key>
           <Property Name="id_Tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Pecas" Relationship="Self.FK_Pecas_Tipo" FromRole="Tipo" ToRole="Pecas" />
+          <NavigationProperty Name="Pecas" Relationship="catalogoOficialModel.FK_Pecas_Tipo" FromRole="Tipo" ToRole="Pecas" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -178,9 +183,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="catalogoOficialEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carro" EntityType="Self.Carro" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Cliente_Usuario" Association="Self.FK_Cliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <EntitySet Name="Pecas" EntityType="catalogoOficialModel.Pecas" />
+          <AssociationSet Name="FK_Pecas_Carro" Association="catalogoOficialModel.FK_Pecas_Carro">
+            <End Role="Carro" EntitySet="Carro" />
+            <End Role="Pecas" EntitySet="Pecas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pecas_Tipo" Association="catalogoOficialModel.FK_Pecas_Tipo">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="Pecas" EntitySet="Pecas" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Pecas">
+          <Key>
+            <PropertyRef Name="id_Pecas" />
+          </Key>
+          <Property Name="id_Pecas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_Pecas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="preco_Pecas" Type="Double" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <Property Name="carro" Type="Int32" />
+          <NavigationProperty Name="Carro1" Relationship="catalogoOficialModel.FK_Pecas_Carro" FromRole="Pecas" ToRole="Carro" />
+          <NavigationProperty Name="Tipo1" Relationship="catalogoOficialModel.FK_Pecas_Tipo" FromRole="Pecas" ToRole="Tipo" />
+        </EntityType>
+        <Association Name="FK_Pecas_Carro">
+          <End Type="catalogoOficialModel.Carro" Role="Carro" Multiplicity="0..1" />
+          <End Type="catalogoOficialModel.Pecas" Role="Pecas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carro">
+              <PropertyRef Name="id_carro" />
+            </Principal>
+            <Dependent Role="Pecas">
+              <PropertyRef Name="carro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pecas_Tipo">
-          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
-          <End Role="Pecas" Type="Self.Pecas" Multiplicity="*" />
+          <End Type="catalogoOficialModel.Tipo" Role="Tipo" Multiplicity="1" />
+          <End Type="catalogoOficialModel.Pecas" Role="Pecas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tipo">
               <PropertyRef Name="id_Tipo" />
@@ -190,22 +239,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="catalogoOficialEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Carro" EntityType="Self.Carro" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Pecas" EntityType="Self.Pecas" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tipo" EntityType="Self.Tipo" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK_Cliente_Usuario" Association="Self.FK_Cliente_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Cliente" EntitySet="Cliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pecas_Tipo" Association="Self.FK_Pecas_Tipo">
-            <End Role="Tipo" EntitySet="Tipo" />
-            <End Role="Pecas" EntitySet="Pecas" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -235,17 +268,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Pecas">
-            <EntityTypeMapping TypeName="catalogoOficialModel.Pecas">
-              <MappingFragment StoreEntitySet="Pecas">
-                <ScalarProperty Name="id_Pecas" ColumnName="id_Pecas" />
-                <ScalarProperty Name="nome_Pecas" ColumnName="nome_Pecas" />
-                <ScalarProperty Name="preco_Pecas" ColumnName="preco_Pecas" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="nome_carro" ColumnName="nome_carro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="catalogoOficialModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -271,6 +293,17 @@
                 <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
                 <ScalarProperty Name="nome_Usuario" ColumnName="nome_Usuario" />
                 <ScalarProperty Name="senha_Usuario" ColumnName="senha_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pecas">
+            <EntityTypeMapping TypeName="catalogoOficialModel.Pecas">
+              <MappingFragment StoreEntitySet="Pecas">
+                <ScalarProperty Name="carro" ColumnName="carro" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="preco_Pecas" ColumnName="preco_Pecas" />
+                <ScalarProperty Name="nome_Pecas" ColumnName="nome_Pecas" />
+                <ScalarProperty Name="id_Pecas" ColumnName="id_Pecas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

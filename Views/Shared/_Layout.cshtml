@@ -4,12 +4,10 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title </title>
-
-    
-    <link href="~/content/site.css" rel="stylesheet" type="text/css" />
-    <link href="~/content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/scripts/modernizr-2.8.3.js"></script>
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,11 +19,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Clientes", "Index", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Carros", "Index", "Carro", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Categorias", "Index", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Peças", "Index", "Pecas", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Usuarios", "IndexUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Clientes", "IndexCliente", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Carros", "IndexCarro", "Carro", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Categorias", "IndexTipo", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Pe�as", "IndexPecas", "Pecas", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,12 +31,13 @@
             </div>
         </div>
     </div>
-
+    <br>
+    <br>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer class="footer">
-            <p>&copy; @DateTime.Now.Year - Catálogo</p>
+            <p>&copy; @DateTime.Now.Year - Cat�logo</p>
         </footer>
     </div>
 

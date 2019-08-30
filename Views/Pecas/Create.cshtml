@@ -1,10 +1,10 @@
 ﻿@model Oficial4.Models.Pecas
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nova Peça";
 }
 
-<h2>Create</h2>
+<h2>Nova Peça</h2>
 
 
 @using (Html.BeginForm())
@@ -12,35 +12,64 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Pecas</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.nome_Pecas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nome_Pecas, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nome_Pecas, "", new { @class = "text-danger" })
-            </div>
+    @Html.DropDownList("teste", (SelectList)ViewBag.Carros, new { })
+<div class="form-horizontal">
+    <h4>Pecas</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.nome_Pecas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nome_Pecas, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nome_Pecas, "", new { @class = "text-danger" })
         </div>
+    </div>
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.preco_Pecas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.preco_Pecas, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.preco_Pecas, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.preco_Pecas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.preco_Pecas, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.preco_Pecas, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
+    <div class="form-group">
             @Html.LabelFor(model => model.tipo, "tipo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("tipo", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+
+
+
+
+    @*<div class="form-group">
+                <ul class="list-group" id="ItemList">
+                    <li class="list-group-item-heading list-group-item active">
+                        <h4 class="list-group-item-text"></h4>
+
+                    </li>
+                    @foreach (var item in ViewBag.Carros)
+                    {
+                        <li class="list-group-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="Check_@item.Id_Carro" checked="@item.Id_Carro">
+                                <label for="Check_@item.Id_Carro">@item.nome_Carro</label>
+
+
+                            </div>
+                        </li>
+                    }
+                    <li class="list-group-item">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" onclick="SaveList()" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>*@
 
 
     @*foreach (var item in ViewBag.Carros)
@@ -51,32 +80,38 @@
                 <label for="@item.nome_Carro">@item.nome_Carro</label>
             </div>
         }*@
-
-<div class="panel panel-body" style="min-height:256px">
-
-</div>
-
-
-    //metodo oficial da criação do crud
     @*<div class="form-group">
-            @Html.LabelFor(model => model.nome_carro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nome_carro, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nome_carro, "", new { @class = "text-danger" })
-            </div>
-        </div@*>*@
+        @Html.LabelFor(model => model.carro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.carro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.carro, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
 
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" onclick="SaveList()"/>
+            <input type="submit" value="Criar" class="btn btn-default" onclick="SaveList()" />
         </div>
     </div>
+</div>
 
-       
- 
+
+
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para lista", "Index")
 </div>
+@*<script>
+    var SaveList = fucntion() {
+        var arrItem = [];
+    var commaseparatedIds = "";
+
+    $("#itemList li input [type=checkbox]").each(function (Create,val) {
+        debugger
+
+    });
+
+    }
+</script>*@

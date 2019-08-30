@@ -39,8 +39,16 @@ namespace Oficial4.Controllers.cruds
         // GET: Pecas/Create
         public ActionResult Create()
         {
-            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao");
+            catalogoOficialEntities db = new catalogoOficialEntities();
+
+            List<Carro> carros = new List<Carro>();
+
+            carros = db.Carro.ToList();
+            ViewBag.Carros = carros;
+            ViewBag.Carros = new SelectList(db.Carro, "id_Carro", "nome_Carro");
             return View();
+     
+
             //var carros = db.Carro.FirstOrDefault(x => x.nome_Carro == nome_Carro);
             //return Json(carros, JsonRequestBehavior.AllowGet);
         }
@@ -58,13 +66,10 @@ namespace Oficial4.Controllers.cruds
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
+            ViewBag.Tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
             return View(pecas);
         }
         
-        //public JsonResult getCarro(string )
-
-
         // GET: Pecas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,7 +82,7 @@ namespace Oficial4.Controllers.cruds
             {
                 return HttpNotFound();
             }
-            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
+            ViewBag.Tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
             return View(pecas);
         }
 
@@ -132,5 +137,20 @@ namespace Oficial4.Controllers.cruds
             }
             base.Dispose(disposing);
         }
+        [HttpGet]
+        public JsonResult DetailsJSON(int? id)
+        {
+            var peca = db.Pecas.AsEnumerable().FirstOrDefault(p => p.id_Pecas == id);
+
+            dynamic pJSON = new
+            {
+                id = peca.id_Pecas,
+                nome = peca.nome_Pecas
+            };
+
+
+            return Json(pJSON, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

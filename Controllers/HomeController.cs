@@ -30,13 +30,24 @@ namespace Oficial4.Controllers
                     }
                     else
                     {
-                        Session["id_Usuario"] = obj.id_Usuario;
-                        return RedirectToAction("Index", "Index");
-
+                        Session["id_Usuario"] = objUser.id_Usuario;
+                        Session["nome_Usuario"] = objUser.nome_Usuario;
+                        if (Session["nome_Usuario"].ToString() == "cliente")
+                        {
+                            return RedirectToAction("Index", "Index");
+                        }
+                        if (Session["nome_Usuario"].ToString() == "adm")
+                        {
+                            return RedirectToAction("AcessoADMIN", "Admin");
+                        }
+                        else
+                        {
+                            return View("Login", objUser);
+                        }
                     }
                 }
             }
-            return View(objUser);
+            return View();
         }
 
         public ActionResult Index()
