@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Oficial4.Models.Pecas>
 
 @{
-    ViewBag.Title = "Lista Peças";
+    ViewBag.Title = "Index";
 }
 
-<h2>Lista de Peças</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Incluir Novo Produto", "Create", new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.preco_Pecas)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nome_carro)
+            @Html.DisplayNameFor(model => model.Carro1.nome_Carro)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Tipo1.descricao)
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.preco_Pecas)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nome_carro)
+            @Html.DisplayFor(modelItem => item.Carro1.nome_Carro)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tipo1.descricao)

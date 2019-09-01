@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -42,10 +41,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nome_carro, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.carro, "carro", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome_carro, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nome_carro, "", new { @class = "text-danger" })
+                @Html.DropDownList("carro", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.carro, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -60,7 +59,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

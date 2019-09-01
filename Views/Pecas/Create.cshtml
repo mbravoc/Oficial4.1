@@ -1,18 +1,15 @@
 ﻿@model Oficial4.Models.Pecas
 
 @{
-    ViewBag.Title = "Nova Peça";
+    ViewBag.Title = "Create";
 }
 
-<h2>Nova Peça</h2>
+<h2>Create</h2>
 
-
-@using (Html.BeginForm())
-
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    @Html.DropDownList("teste", (SelectList)ViewBag.Carros, new { })
+    
 <div class="form-horizontal">
     <h4>Pecas</h4>
     <hr />
@@ -25,7 +22,6 @@
         </div>
     </div>
 
-
     <div class="form-group">
         @Html.LabelFor(model => model.preco_Pecas, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -35,83 +31,37 @@
     </div>
 
     <div class="form-group">
-            @Html.LabelFor(model => model.tipo, "tipo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("tipo", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
-            </div>
+        @Html.LabelFor(model => model.tipo, "tipo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("tipo", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-
-
-
+    @foreach (var item in ViewBag.Carros)
+    {
+        <div id="tabela">
+            <input type="checkbox" id="@item.nome_Carro" name="@item.nome_Carro"
+                   checked>
+            <label for="@item.nome_Carro">@item.nome_Carro</label>
+        </div>
+    }
     @*<div class="form-group">
-                <ul class="list-group" id="ItemList">
-                    <li class="list-group-item-heading list-group-item active">
-                        <h4 class="list-group-item-text"></h4>
-
-                    </li>
-                    @foreach (var item in ViewBag.Carros)
-                    {
-                        <li class="list-group-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="Check_@item.Id_Carro" checked="@item.Id_Carro">
-                                <label for="Check_@item.Id_Carro">@item.nome_Carro</label>
-
-
-                            </div>
-                        </li>
-                    }
-                    <li class="list-group-item">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" onclick="SaveList()" />
-                        </div>
-                    </li>
-                </ul>
+            @Html.LabelFor(model => model.carro, "carro", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("carro", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.carro, "", new { @class = "text-danger" })
             </div>
         </div>*@
 
-
-    @*foreach (var item in ViewBag.Carros)
-        {
-            <div id="tabela">
-                <input type="checkbox" id="@item.nome_Carro" name="@item.nome_Carro"
-                       checked>
-                <label for="@item.nome_Carro">@item.nome_Carro</label>
-            </div>
-        }*@
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.carro, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.carro, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.carro, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Criar" class="btn btn-default" onclick="SaveList()" />
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
 </div>
-
-
-
 }
 
 <div>
-    @Html.ActionLink("Voltar para lista", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
-@*<script>
-    var SaveList = fucntion() {
-        var arrItem = [];
-    var commaseparatedIds = "";
-
-    $("#itemList li input [type=checkbox]").each(function (Create,val) {
-        debugger
-
-    });
-
-    }
-</script>*@

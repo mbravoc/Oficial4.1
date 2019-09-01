@@ -42,11 +42,18 @@ namespace Oficial4.Controllers
         {
             catalogoOficialEntities db = new catalogoOficialEntities();
 
-            List<RetornoCategoria> tipos = new List<RetornoCategoria>();
+            List<Tipo> tipos = new List<Tipo>();
 
             ViewBag.Tipos = tipos;
-            ViewBag.Tipos = new SelectList(db.Tipo, "id_Tipo", "descricao");
+            //ViewBag.Tipos = new SelectList(db.Tipo, "id_Tipo", "descricao");
             return View();
         }
     }
 }
+
+
+
+
+
+
+

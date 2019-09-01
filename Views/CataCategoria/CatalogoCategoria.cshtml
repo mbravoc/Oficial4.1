@@ -1,4 +1,4 @@
-﻿@model Oficial4.Models.RetornoCategoria
+﻿@model Oficial4.Models.Pecas
 @{
     ViewBag.Title = "CATÁLOGO - Cliente";
 }
@@ -19,7 +19,7 @@
             @foreach (var item in ViewBag.Tipos)
             {
 
-                <option class="form-group" value="@item.id_Tipo">@item.id_Tipo</option>
+                <option class="form-group" value="@item.tipo">@item.tipo</option>
 
             }
         </select>

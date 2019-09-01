@@ -155,11 +155,6 @@
     <Content Include="Views\Tipo\Details.cshtml" />
     <Content Include="Views\Tipo\Edit.cshtml" />
     <Content Include="Views\Tipo\Index.cshtml" />
-    <Content Include="Views\Pecas\Create.cshtml" />
-    <Content Include="Views\Pecas\Delete.cshtml" />
-    <Content Include="Views\Pecas\Details.cshtml" />
-    <Content Include="Views\Pecas\Edit.cshtml" />
-    <Content Include="Views\Pecas\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\CataCategoria\CatalogoCategoria.cshtml" />
@@ -238,6 +233,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Admin\AcessoADMIN.cshtml" />
     <Content Include="Views\Admin\TelaAdmin.cshtml" />
+    <Content Include="Views\Pecas\Create.cshtml" />
+    <Content Include="Views\Pecas\Delete.cshtml" />
+    <Content Include="Views\Pecas\Details.cshtml" />
+    <Content Include="Views\Pecas\Edit.cshtml" />
+    <Content Include="Views\Pecas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

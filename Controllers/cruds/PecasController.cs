@@ -13,11 +13,11 @@ namespace Oficial4.Controllers.cruds
     public class PecasController : Controller
     {
         private catalogoOficialEntities db = new catalogoOficialEntities();
-        
+
         // GET: Pecas
         public ActionResult Index()
         {
-            var pecas = db.Pecas.Include(p => p.Tipo1);
+            var pecas = db.Pecas.Include(p => p.Carro1).Include(p => p.Tipo1);
             return View(pecas.ToList());
         }
 
@@ -39,18 +39,13 @@ namespace Oficial4.Controllers.cruds
         // GET: Pecas/Create
         public ActionResult Create()
         {
-            catalogoOficialEntities db = new catalogoOficialEntities();
-
             List<Carro> carros = new List<Carro>();
 
             carros = db.Carro.ToList();
             ViewBag.Carros = carros;
-            ViewBag.Carros = new SelectList(db.Carro, "id_Carro", "nome_Carro");
+            //ViewBag.carro = new SelectList(db.Carro, "id_carro", "nome_Carro");
+            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao");
             return View();
-     
-
-            //var carros = db.Carro.FirstOrDefault(x => x.nome_Carro == nome_Carro);
-            //return Json(carros, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Pecas/Create
@@ -58,7 +53,7 @@ namespace Oficial4.Controllers.cruds
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Pecas,nome_Pecas,preco_Pecas,tipo,nome_carro")] Pecas pecas)
+        public ActionResult Create([Bind(Include = "id_Pecas,nome_Pecas,preco_Pecas,tipo,carro")] Pecas pecas)
         {
             if (ModelState.IsValid)
             {
@@ -66,10 +61,12 @@ namespace Oficial4.Controllers.cruds
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
+
+            ViewBag.carro = new SelectList(db.Carro, "id_carro", "nome_Carro", pecas.carro);
+            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
             return View(pecas);
         }
-        
+
         // GET: Pecas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -82,7 +79,8 @@ namespace Oficial4.Controllers.cruds
             {
                 return HttpNotFound();
             }
-            ViewBag.Tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
+            ViewBag.carro = new SelectList(db.Carro, "id_carro", "nome_Carro", pecas.carro);
+            ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
             return View(pecas);
         }
 
@@ -91,7 +89,7 @@ namespace Oficial4.Controllers.cruds
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Pecas,nome_Pecas,preco_Pecas,tipo,nome_carro")] Pecas pecas)
+        public ActionResult Edit([Bind(Include = "id_Pecas,nome_Pecas,preco_Pecas,tipo,carro")] Pecas pecas)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +97,7 @@ namespace Oficial4.Controllers.cruds
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.carro = new SelectList(db.Carro, "id_carro", "nome_Carro", pecas.carro);
             ViewBag.tipo = new SelectList(db.Tipo, "id_Tipo", "descricao", pecas.tipo);
             return View(pecas);
         }
@@ -137,20 +136,5 @@ namespace Oficial4.Controllers.cruds
             }
             base.Dispose(disposing);
         }
-        [HttpGet]
-        public JsonResult DetailsJSON(int? id)
-        {
-            var peca = db.Pecas.AsEnumerable().FirstOrDefault(p => p.id_Pecas == id);
-
-            dynamic pJSON = new
-            {
-                id = peca.id_Pecas,
-                nome = peca.nome_Pecas
-            };
-
-
-            return Json(pJSON, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }
