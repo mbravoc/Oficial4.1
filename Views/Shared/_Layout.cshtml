@@ -10,6 +10,10 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,10 +26,10 @@
                 @Html.ActionLink("Adm", "AcessoADMIN", "Admin", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Catálogo", "Index", "Index", new { area = "" }, new { @class = "navbar-brand" })
                 @*@Html.ActionLink("Usuarios", "IndexUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Clientes", "IndexCliente", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Carros", "IndexCarro", "Carro", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Categorias", "IndexTipo", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Pe�as", "IndexPecas", "Pecas", new { area = "" }, new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("Clientes", "IndexCliente", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Carros", "IndexCarro", "Carro", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Categorias", "IndexTipo", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Pe�as", "IndexPecas", "Pecas", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,8 +46,5 @@
             <p>&copy; @DateTime.Now.Year - Catálogo</p>
         </footer>
     </div>
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

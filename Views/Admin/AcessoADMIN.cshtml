@@ -1,12 +1,20 @@
 ﻿@model Oficial4.Controllers.AdminController
 @{
     ViewBag.Title = "AcessoADMIN";
-    if (Session["nome_Usuario"].ToString() != "adm")
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
-    
+    //else (Session["nome_Usuario"].ToString() == null)
+    //{
+    //    Response.Redirect("~/Home/Login");
+    //}
+
+
+
 }
+    <link href="~/Content/Admin.css" rel="stylesheet" />
 
 <h1>  Bem-Vindo <br /> Administrador!  </h1>
 <br />
@@ -16,17 +24,12 @@
 <h3>Acesso:</h3>
 <ul>
     <li>
+        <a href="/Usuario/Index" class="btn btn-default">Usuários</a>
+        <a href="/Cliente/Index" class="btn btn-default">Pessoas</a>
+        <a href="/Carro/Index" class="btn btn-default">Carros</a>
+        <a href="/Tipo/Index" class="btn btn-default">Categorias</a>
+        <a href="/Pecas/Index" class="btn btn-default">Peças</a>
 
-
-        @Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
-
-        @Html.ActionLink("Clientes", "Index", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
-
-        @Html.ActionLink("Carros", "Index", "Carro", new { area = "" }, new { @class = "navbar-brand" })
-
-        @Html.ActionLink("Categorias", "Index", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
-
-        @Html.ActionLink("Peças", "Index", "Pecas", new { area = "" }, new { @class = "navbar-brand" })
     </li>
 
 </ul>

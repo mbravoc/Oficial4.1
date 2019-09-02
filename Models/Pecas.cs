@@ -11,16 +11,24 @@ namespace Oficial4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Pecas
     {
         public int id_Pecas { get; set; }
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string nome_Pecas { get; set; }
+        [Display(Name = "Preço")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public Nullable<double> preco_Pecas { get; set; }
+        [Display(Name = "Categoria")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public int tipo { get; set; }
+        [Display(Name = "Carro")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public Nullable<int> carro { get; set; }
-    
-        public virtual Carro Carro1 { get; set; }
+                public virtual Carro Carro1 { get; set; }
         public virtual Tipo Tipo1 { get; set; }
     }
 }

@@ -11,7 +11,8 @@ namespace Oficial4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Carro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,8 @@ namespace Oficial4.Models
         }
     
         public int id_carro { get; set; }
+        [Display(Name = "Nome do Carro")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string nome_Carro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

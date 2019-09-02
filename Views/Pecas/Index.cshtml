@@ -40,10 +40,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Tipo1.descricao)
         </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_Pecas }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_Pecas }) |
-            @Html.ActionLink("Apagar", "Delete", new { id=item.id_Pecas })
+        <td><b>||</b>
+            <button>
+    @Html.ActionLink("Editar", "Edit", new { id = item.id_Pecas })
+</button> <b>||</b>
+          <button>
+              @Html.ActionLink("Detalhes", "Details", new { id = item.id_Pecas })
+          </button><b>||</b>
+                   <button>
+                       @Html.ActionLink("Apagar", "Delete", new { id = item.id_Pecas })
+                   </button><b>||</b>
         </td>
     </tr>
 }

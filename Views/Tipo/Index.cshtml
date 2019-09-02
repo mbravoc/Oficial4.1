@@ -2,12 +2,21 @@
 
 @{
     ViewBag.Title = "Categorias de peça";
+     var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
 <h2>Categorias:</h2>
-
+<style>
+    h1, h2, h3, h4, h5, p, tr{
+        color:aliceblue;
+    }
+</style>
 <p>
-    @Html.ActionLink("Criar nova Categoria", "Create")
+    @Html.ActionLink("Criar nova Categoria", "Create", new {@class = "btn btn-Info" })
 </p>
 <table class="table">
     <tr>
@@ -22,10 +31,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.descricao)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Tipo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Tipo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Tipo })
+        <td><b>||</b>
+            <button>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_Tipo })
+            </button> <b>||</b>
+            <button>
+                @Html.ActionLink("Details", "Details", new { id = item.id_Tipo })
+            </button> <b>||</b>
+            <button>
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_Tipo })
+            </button> <b>||</b>
         </td>
     </tr>
 }

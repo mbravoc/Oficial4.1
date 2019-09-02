@@ -11,7 +11,8 @@ namespace Oficial4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tipo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,8 @@ namespace Oficial4.Models
         }
     
         public int id_Tipo { get; set; }
+        [Display(Name= "Descrição")]
+        [Required(ErrorMessage="Campo Obrigatório")]
         public string descricao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

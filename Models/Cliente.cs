@@ -11,17 +11,34 @@ namespace Oficial4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Cliente
     {
         public int id_Cliente { get; set; }
+        [Display(Name = "CPF")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string CPF { get; set; }
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Nome { get; set; }
+        [Display(Name = "Sobrenome")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Sobrenome { get; set; }
+        [Display(Name = "Idade")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public Nullable<int> Idade { get; set; }
+        [Display(Name = "Sexo")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Sexo { get; set; }
+        [Display(Name = "Endereço")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Endereco { get; set; }
+        [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Cidade { get; set; }
+        [Display(Name = "Tipo de Usuario")]
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public int usuario { get; set; }
     
         public virtual Usuario Usuario1 { get; set; }

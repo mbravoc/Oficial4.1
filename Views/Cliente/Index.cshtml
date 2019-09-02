@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Pessoas";
-    if (Session["nome_Usuario"].ToString() != "adm")
+     var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
@@ -69,9 +70,16 @@
             @Html.DisplayFor(modelItem => item.Usuario1.nome_Usuario)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id_Cliente }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.id_Cliente }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.id_Cliente })
+            <b>||</b>
+            <button>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_Cliente })
+            </button> <b>||</b>
+                     <button>
+                         @Html.ActionLink("Detalhes", "Details", new { id = item.id_Cliente })
+                     </button> <b>||</b>
+                              <button>
+                                  @Html.ActionLink("Excluir", "Delete", new { id = item.id_Cliente })
+                              </button> <b>||</b>
         </td>
     </tr>
 }

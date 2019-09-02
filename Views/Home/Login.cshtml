@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Login";
 }
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 <style>
  .field-validation-error {
@@ -44,7 +43,7 @@
 
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<body>
+@*<body>*@
 
     <div class="container">
         <div class="form-login">
@@ -98,7 +97,7 @@
                     </div>
                 </div>
                 <div>
-                    <div colspan="2">
+                    <div colspan="6">
                         <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
                     </div>
 
@@ -115,8 +114,8 @@
             </div>
         </div>
     </div>
-</body>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@*</body>*@
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 }
