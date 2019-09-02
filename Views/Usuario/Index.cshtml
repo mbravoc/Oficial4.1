@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Oficial4.Models.Usuario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuários";
 }
 
-<h2>Index</h2>
+<h2>Usuários</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo Usuário", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.senha_Usuario)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Usuario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Usuario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Usuario })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_Usuario }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_Usuario }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.id_Usuario })
         </td>
     </tr>
 }

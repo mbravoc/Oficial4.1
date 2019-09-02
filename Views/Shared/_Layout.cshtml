@@ -19,11 +19,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Adm", "AcessoADMIN", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Catálogo", "Index", "Index", new { area = "" }, new { @class = "navbar-brand" })
                 @*@Html.ActionLink("Usuarios", "IndexUsuario", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Clientes", "IndexCliente", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Carros", "IndexCarro", "Carro", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Categorias", "IndexTipo", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Pe�as", "IndexPecas", "Pecas", new { area = "" }, new { @class = "navbar-brand" })*@
+        @Html.ActionLink("Clientes", "IndexCliente", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Carros", "IndexCarro", "Carro", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Categorias", "IndexTipo", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Pe�as", "IndexPecas", "Pecas", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -37,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer class="footer">
-            <p>&copy; @DateTime.Now.Year - Cat�logo</p>
+            <p>&copy; @DateTime.Now.Year - Catálogo</p>
         </footer>
     </div>
 

@@ -1,13 +1,13 @@
 ﻿@model Oficial4.Models.Usuario
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Deletar";
 }
 
-<h2>Details</h2>
+<h2>Deletar</h2>
 
 <div>
-    <h4>Usuario</h4>
+    <h4>Usuário</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Usuario }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_Usuario }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>

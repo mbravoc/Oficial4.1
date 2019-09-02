@@ -1,13 +1,17 @@
 ﻿@model Oficial4.Models.Cliente
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detlhes";
+    if (Session["nome_Usuario"].ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>Cliente</h4>
+    <h4>Pessoas</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -77,6 +81,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Cliente }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_Cliente }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>

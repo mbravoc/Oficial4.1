@@ -1,13 +1,17 @@
 ﻿@model IEnumerable<Oficial4.Models.Carro>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Carros";
+    if (Session["nome_Usuario"].ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Index</h2>
+<h2>Cadastro de Carros</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar novo Carro", "Create")
 </p>
 <table class="table">
     <tr>
@@ -23,9 +27,9 @@
             @Html.DisplayFor(modelItem => item.nome_Carro)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_carro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_carro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_carro })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_carro }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_carro }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.id_carro })
         </td>
     </tr>
 }

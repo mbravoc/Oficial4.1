@@ -1,12 +1,16 @@
 ﻿@model Oficial4.Models.Cliente
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Excluir";
+    if (Session["nome_Usuario"].ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Delete</h2>
+<h2>Excluir</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem certeza que deseja excluir esse cadastro de pessoa?</h3>
 <div>
     <h4>Cliente</h4>
     <hr />
@@ -81,8 +85,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
         </div>
     }
 </div>

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Oficial4.Models.Pecas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Início";
 }
 
-<h2>Index</h2>
+<h2>Peças</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar nova peça", "Create")
 </p>
 <table class="table">
     <tr>
@@ -17,9 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.preco_Pecas)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Carro1.nome_Carro)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Tipo1.descricao)
         </th>
@@ -34,16 +34,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.preco_Pecas)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Carro1.nome_Carro)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Tipo1.descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Pecas }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Pecas }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Pecas })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_Pecas }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_Pecas }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=item.id_Pecas })
         </td>
     </tr>
 }

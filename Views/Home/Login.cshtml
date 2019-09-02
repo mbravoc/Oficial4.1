@@ -3,20 +3,39 @@
 @{
     ViewBag.Title = "Login";
 }
-<link href="~/Content/login.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 <style>
-    .field-validation-error {
+ .field-validation-error {
         color: red;
     }
 
     .msgerro {
         text-align: center;
     }
+.form-login{
+     
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     width: 90%;
+     height: 300px;
+
+     
+}
+.panel panel-default{
+     margin: auto;
+  width: 80%;
+  background: #fff;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
 </style>
 
 <script src="~/scripts/bootstrap.min.js"></script>
+<link href="~/Content/login.css" rel="stylesheet" />
 
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 
@@ -25,6 +44,7 @@
 
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<body>
 
     <div class="container">
         <div class="form-login">
@@ -33,7 +53,7 @@
                     <div class="panel-title">LOGIN - Catálogo</div>
                 </div>
 
-                <div style="padding-top:30px" class="panel-body">
+                <div style="padding-top:10px" class="panel-body">
                     <div style="display:none" id="result" class="alert
                     alert-danger col-sm-12">
 
@@ -85,7 +105,7 @@
                 </div>
 
 
-                <div style="margin-top:10px" class="form-group">
+                <div style="margin-top:2px" class="form-group">
 
                     <div class="col-sm-12 controls">
                         <input type="submit" value="Acessar"
@@ -95,26 +115,8 @@
             </div>
         </div>
     </div>
-
+</body>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-    <script>
-        // just for the demos, avoids form submit
-        jQuery.validator.setDefaults({
-            debug: true,
-            success: "valid"
-        });
-        $("#myform").validate({
-            rules: {
-                field: {
-                    required: true,
-                    step: 10
-                }
-            }
-        });
-    </script>
 }

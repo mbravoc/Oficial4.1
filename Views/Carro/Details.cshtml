@@ -1,10 +1,14 @@
 ﻿@model Oficial4.Models.Carro
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
+    if (Session["nome_Usuario"].ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>Carro</h4>
@@ -21,6 +25,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_carro }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_carro }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>
