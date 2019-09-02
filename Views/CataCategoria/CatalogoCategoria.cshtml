@@ -11,22 +11,33 @@
             <option value="">text</option>
         }
     </select>*@
-<div>
-    <h2>Selecione Categoria da peça Desejada:</h2>
+    <div>
+        <h2>Selecione Categoria da peça Desejada:</h2>
 
-    <div class="div-select">
-        <select id="selecttipos" name=" ">
-            @foreach (var item in ViewBag.Tipos)
-            {
+        <div class="div-select">
+            <select id="selecttipos" name=" ">
+                @foreach (var item in ViewBag.Tipos)
+                {
+                    <option class="form-group" value="@item.id_Tipo">@item.descricao</option>
+                }
+            </select>
+        </div>
 
-                <option class="form-group" value="@item.tipo">@item.tipo</option>
+        <table class="table" id="tbPecas">
+            <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-            }
-        </select>
+
     </div>
-
-
-</div>
 
 <script src="~/Scripts/jquery-3.3.1.intellisense.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -35,14 +46,30 @@
 <script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function ()
-    {
-        $("#selecttipos").change(function ()
-        {
-            @*var url = "@Url.Action("CatalogoCategoria","CatalogoCategoria")";*@
-            window.open("https://localhost:44312/IndexAjaxCatalogo/CataPecas");
-            $.get
-            location.href = url;
+    $(document).ready(function () {
+        $("#selecttipos").change(function () {
+            var idTipo = $("#selecttipos").val();
+
+            var tbPecasBody = $("#tbPecas").find("tbody");
+            tbPecasBody.html("");
+
+            $.getJSON("/CataCategoria/RetornaPecasCatalogoAjax/" + idTipo, function (data) {
+
+                $.each(data, function (key, item) {
+                    var tdCodigo = $("<td>").append(item.id_Pecas);
+                    var tdNome = $("<td>").append(item.nome_Pecas);
+                    var tdTipo = $("<td>").append(item.Tipo1.descricao);
+                    var tdValor = $("<td>").append(item.preco_Pecas);
+
+                    var tr = $("<tr>").append(tdCodigo)
+                        .append(tdNome)
+                        .append(tdTipo)
+                        .append(tdValor);
+
+
+                    tbPecasBody.append(tr);
+                });
+            })
         });
     });
 </script>

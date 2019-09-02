@@ -17,7 +17,17 @@ namespace Oficial4
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+                );
+                routes.MapRoute(
+                name: "CataCategoriaPecasId",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "CataCategoria", action = "CatalogoCategoria", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "RetornaPecasCatalogoAjaxIdTipo",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "CataCategoria", action = "RetornaPecasCatalogoAjax", id = UrlParameter.Optional });
         }
+
     }
 }

@@ -38,15 +38,34 @@ namespace Oficial4.Controllers
         //    return RedirectToAction("CatalogoCategoria", "CataCategoria", new { id = 1002 });
 
         //}
-        public ActionResult CatalogoCategoria()
+        public ActionResult CatalogoCategoria(int? id)
         {
+            Session["idCarroCliente"] = id;
             catalogoOficialEntities db = new catalogoOficialEntities();
 
-            List<Tipo> tipos = new List<Tipo>();
+            List<Tipo> tipos = db.Tipo.ToList();
 
             ViewBag.Tipos = tipos;
             //ViewBag.Tipos = new SelectList(db.Tipo, "id_Tipo", "descricao");
             return View();
+        }
+        public JsonResult RetornaPecasCatalogoAjax(int? id)
+        {
+            var idCarro = Convert.ToInt32(Session["idCarroCliente"] ?? 0);
+
+            dynamic pecas = db.Pecas.Where(p => p.carro == idCarro || p.carro == null)
+                                    .Where(p => p.tipo == id)
+                                    .Select(p => new {
+                                        p.id_Pecas,
+                                        p.nome_Pecas,
+                                        p.preco_Pecas,
+                                        Tipo1 = new
+                                        {
+                                            descricao = p.Tipo1.descricao
+                                        }
+                                    });
+
+            return Json(pecas, JsonRequestBehavior.AllowGet);
         }
     }
 }
