@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Deletar";
-    if (Session["nome_Usuario"].ToString() != "adm")
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
@@ -29,7 +30,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
             @Html.ActionLink("Voltar", "Index")
         </div>
     }

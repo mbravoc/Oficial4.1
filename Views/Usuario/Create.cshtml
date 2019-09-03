@@ -2,8 +2,17 @@
 
 @{
     ViewBag.Title = "Criar";
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
-
+    <style>
+        h2, h4, div{
+            color:aliceblue;
+        }
+    </style>
 <h2>Criar</h2>
 
 
@@ -33,14 +42,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Criar" class="btn btn-default" />
+                <input type="submit" value="Criar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+    <a href="/Usuario/Index" class="btn btn-info">Voltar</a>
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>

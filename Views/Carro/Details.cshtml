@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Detalhes";
-    if (Session["nome_Usuario"].ToString() != "adm")
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
@@ -26,5 +27,5 @@
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.id_carro }) |
-    @Html.ActionLink("Voltar", "Index")
+    <a href="/Carro/Index" class="btn btn-info">Voltar</a>
 </p>

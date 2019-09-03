@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Categorias de peça";
-     var usrSession = Session["nome_Usuario"];
+    var usrSession = Session["nome_Usuario"];
     if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
@@ -10,11 +10,7 @@
 }
 
 <h2>Categorias:</h2>
-<style>
-    h1, h2, h3, h4, h5, p, tr{
-        color:aliceblue;
-    }
-</style>
+
 <p>
     @Html.ActionLink("Criar nova Categoria", "Create", new {@class = "btn btn-Info" })
 </p>

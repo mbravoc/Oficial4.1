@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Edit";
-    if (Session["nome_Usuario"].ToString() != "adm")
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
@@ -87,14 +88,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+    <a href="/Cliente/Index" class="btn btn-info">Voltar</a>
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>

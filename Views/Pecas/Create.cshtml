@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Criar";
-    if (Session["nome_Usuario"].ToString() != "adm")
+    var usrSession = Session["nome_Usuario"];
+    if (usrSession != null && usrSession.ToString() != "adm")
     {
         Response.Redirect("~/Home/Login");
     }
@@ -60,12 +61,12 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Criar" class="btn btn-default" />
+            <input type="submit" value="Criar" class="btn btn-success" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Voltar", "Index")
+    <a href="/Pecas/Index" class="btn btn-info">Voltar</a>
 </div>
